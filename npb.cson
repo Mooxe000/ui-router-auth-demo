@@ -1,0 +1,61 @@
+# PUBLIC CONFIG
+name: 'ui-router-auth-demo'
+version: '0.0.0-pre'
+description: 'ui-router-auth-demo'
+author: ':FooTearth <footearth@gmail.com>'
+#main: ''
+license: 'MIT'
+repository:
+  type: 'git'
+  url: 'https://github.com/Mooxe000/ui-router-auth-demo.git'
+bugs:
+  url: 'https://github.com/Mooxe000/ui-router-auth-demo/issues'
+homepage: 'https://github.com/Mooxe000/ui-router-auth-demo'
+Keywords: [
+  'angular'
+  'ui-route'
+  'demo'
+]
+
+# BOWER CONFIG
+bower:
+  dependencies: []
+  devDependencies: []
+
+# NPM CONFIG
+npm:
+  bin: {}
+  scripts:
+    test: ''
+  dependencies: []
+  devDependencies: [
+    'coffee-script'
+    'npb-coffee'
+    'lodash'
+    'del'
+    gulp: [
+      # dev
+      'run-sequence'
+      'gulp-filter'
+      'gulp-coffee'
+      'gulp-jade'
+      'gulp-less'
+      'gulp-tap'
+      'gulp-watch'
+      'gulp-plumber'
+      'browser-sync'
+    ]
+  ]
+
+# NPB CONFIG
+npb:
+
+#  bower:
+#    root_allow: true
+  npm:
+    commander: 'npm' # default
+    # commander: 'cnpm'
+
+# -- build tools --
+#  build: 'gulp'  # default
+#  build: 'grunt'

@@ -1,0 +1,41 @@
+{
+  "name": "ui-router-auth-demo",
+  "version": "0.0.0-pre",
+  "description": "ui-router-auth-demo",
+  "author": ":FooTearth <footearth@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mooxe000/ui-router-auth-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mooxe000/ui-router-auth-demo/issues"
+  },
+  "homepage": "https://github.com/Mooxe000/ui-router-auth-demo",
+  "Keywords": [
+    "angular",
+    "ui-route",
+    "demo"
+  ],
+  "bin": {},
+  "scripts": {
+    "test": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.0.1",
+    "coffee-script": "^1.9.0",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-filter": "^2.0.1",
+    "gulp-jade": "^0.11.0",
+    "gulp-less": "^3.0.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-tap": "^0.1.3",
+    "gulp-watch": "^4.1.1",
+    "lodash": "^3.2.0",
+    "npb-coffee": "^0.1.3",
+    "run-sequence": "^1.0.2"
+  }
+}

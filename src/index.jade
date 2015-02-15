@@ -1,0 +1,65 @@
+doctype html
+html#ng-app(
+lang="en"
+ng-app="demo"
+)
+  head
+
+    link(
+    data-require="bootstrap-css@3.x"
+    data-semver="3.0.3"
+    rel="stylesheet"
+    href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+    )
+    link(
+    rel="stylesheet"
+    href="style.css"
+    )
+
+  body
+    h1 UI-Router Authorization Demo
+    div(ui-view="content")
+      | Please wait while we retrieve your user info
+    hr
+    p
+      | This demo covers how to resolve principal and identity info when your app starts up, and then perform authorization checks during state changes to make sure they have access as explained in my
+      a(
+      href="http://stackoverflow.com/questions/19721125/resolve-http-request-before-running-app-and-switching-to-a-route-or-state"
+      target="_blank"
+      ) SO question.
+    h2 What"s the Problem?
+    p
+      | It is easy to check some data during the
+      code $stateChangeStart
+      | event that ui-router broadcasts, assuming it has already been resolved and is immediately available by the time you respond to the event.
+    p
+      | Let"s say, for example, we need to retrieve a list of roles the user is a member of. If the user goes to the site for the first time and logs in, you can authenticate them, send back the data on the user, and store it somewhere such a service. Your event handler can then use this data to do an authorization check as they move from state to state. If they fail authorization, send them to a log in screen or whatever.
+    p
+      | The problem lies in the fact that said workflow requires the user to log in every time. Once they log in through the UI, they are fine. But if they refresh the browser, or type in a path in the browser manually, or follow a link from somewhere else, such as an email, your app will default to the "unauthenticated" state and they"ll need to sign in again. That"s no good. It"s especially frustrating if you authenticate a user for a long period of time, say, by a cookie. When they revist the site, they just want to be logged in!
+    p
+      | You would solve this by retrieving the same data you normally send during log in, only you request it on their behalf using some other claim. I already mentioned the cookie example. I might make a quick request using
+      code $http
+      | an endpoint that authenticates the user"s identity from the cookie, and respond with the info we need like we do for log in. We can then stash that data in the service we mentioned earlier and go from there.
+    p
+      | That means, however, that we need this resolution to occur when your app runs, but before you are routed to any states. If you don"t already know, Angular (and thus ui-router) uses an asynchronous pattern that is highly dependent on promises for execution. Therefore, it"s not practical to block execution until your start-up authentication stuff is done.
+    p
+      | We"ll need to use some trickery to make sure required resources are resolved before we enforce any authorization rules with our states.
+
+    script(
+    data-require="angular.js@*"
+    data-semver="1.2.9"
+    src="http://code.angularjs.org/1.2.9/angular.js"
+    )
+    script(
+    data-require="ui-bootstrap@*"
+    data-semver="0.10.0"
+    src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"
+    )
+    script(
+    data-require="ui-router@*"
+    data-semver="0.2.8"
+    src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"
+    )
+    script(
+    src="script.js"
+    )
